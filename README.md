@@ -12,7 +12,7 @@ ptz-core-repository is a Polutz module.
 ## Prerequisites
 
 - Node.
-- Docker (for tests).
+- Docker Compose (for tests). https://docs.docker.com/compose/install/
 
 ## NPM Global packages
 ```
@@ -31,7 +31,6 @@ ptz-core-repository is a Polutz module.
 
 ## Test
 ```
-    sudo docker build -t pcr . 
-    sudo docker run -d --name cpcr2 pcr
-    sudo docker exec cpcr2 npm test
+    sudo docker-compose up
+    sudo docker exec web npm test
 ```

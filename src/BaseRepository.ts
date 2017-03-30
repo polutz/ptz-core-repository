@@ -1,6 +1,6 @@
 import { IBaseRepository, IEntityMinBase } from 'ptz-core-domain';
 
-export default class BaseRepository implements IBaseRepository {
+export default class BaseRepository<T> implements IBaseRepository<T> {
     collectionName: string;
     db;
 
