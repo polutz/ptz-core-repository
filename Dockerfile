@@ -6,7 +6,8 @@ WORKDIR /code
 
 #install app dependencies
 RUN npm install -g ts-node ts-node babel-cli && \
-    npm install --no-bin-links
+    npm install 
+# npm install --no-bin-links
 #    && \
 #    typings install dt~mocha --global
 
