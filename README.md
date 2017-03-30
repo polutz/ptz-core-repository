@@ -30,6 +30,7 @@ ptz-core-repository is a Polutz module.
 ```
 
 ## Test
+We use docker to run the tests against a real MongoDB database
 ```
     sudo docker-compose up
     sudo docker exec web npm test
