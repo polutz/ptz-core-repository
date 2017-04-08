@@ -16,12 +16,7 @@ ptz-core-repository is a Polutz module.
 
 ## NPM Global packages
 ```
-    npm install -g ts-node typescript-node babel-cli
-```
-
-## Typings Global Packages 
-```
-    typings install dt~mocha --global --save
+    npm install -g ts-node
 ```
 
 ## Setup
@@ -30,8 +25,13 @@ ptz-core-repository is a Polutz module.
 ```
 
 ## Test
-We use docker to run the tests against a real MongoDB database
+We use docker to run the tests against a real MongoDB database.
+If you are using Windows you don't need 'sudo', you can remove it.
 ```
-    sudo docker-compose up
-    sudo docker exec web npm test
+    sudo docker-compose up -d
+```
+
+Replace CONTAINER_NAME with the output of the last cmd.
+```
+    sudo docker exec CONTAINER_NAME npm test
 ```

@@ -100,5 +100,7 @@ var BaseRepository = function () {
 
     return BaseRepository;
 }();
+//# sourceMappingURL=BaseRepository.js.map
+
 
 exports.default = BaseRepository;

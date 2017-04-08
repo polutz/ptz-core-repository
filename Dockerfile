@@ -5,11 +5,9 @@ ADD . /code
 WORKDIR /code
 
 #install app dependencies
-RUN npm install -g ts-node ts-node babel-cli && \
+RUN npm install -g ts-node && \
     npm install 
 # npm install --no-bin-links
-#    && \
-#    typings install dt~mocha --global
 
 EXPOSE 3000
 
