@@ -46,14 +46,5 @@
     "ptz-log": "^1.0.0",
     "mongodb": "^2.2.25",
     "ptz-core-domain": "^1.1.4"
-  },
-  "scriptsBK": {
-    "lint": "tslint ./src/**/*.ts ./src/**/*.test.ts ./src/**/*.d.ts",
-    "js": "rimraf dist && tsc && babel dist -d dist --presets es2015",
-    "pretest": "npm-run-all --parallel js lint",
-    "mocha": "mocha ./dist/**/*.js --require babel-polyfill",
-    "test": "nyc npm run mocha && nyc report --reporter=text-lcov > coverage.lcov && codecov --token=35177bb8-8aca-4e25-b95a-e739e7f709dd",
-    "predebug": "npm run pretest",
-    "debug": "node --nolazy --debug-brk=5858 dist/index.js"
   }
 }
