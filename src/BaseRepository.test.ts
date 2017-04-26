@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 import { equal, ok } from 'ptz-assert';
-import { EntityMinBase, IBaseRepository } from 'ptz-core-domain';
+import { EntityMinBase, IBaseRepository, IEntityMinBase } from 'ptz-core-domain';
 import { BaseRepository } from './index';
 
 const MONGO_URL = 'mongodb://localhost:27017/relay';
@@ -77,6 +77,25 @@ describe('BaseRepository', () => {
             };
 
             const entitiesDb = await baseRepository.find(query, { limit: 3 });
+
+            equal(entitiesDb.length, 3);
+        });
+    });
+
+    describe('getByIds', () => {
+        it('get 3 entities by ids', async () => {
+            const entities: IEntityMinBase[] = [];
+
+            for (let i = 0; i <= 6; i++) {
+                const entity = new EntityMinBase({});
+                entity['i'] = i;
+                entities.push(entity);
+                await baseRepository.save(entity);
+            }
+
+            const entitiesDb = await baseRepository.getByIds([
+                entities[0].id, entities[1].id, entities[2].id
+            ]);
 
             equal(entitiesDb.length, 3);
         });

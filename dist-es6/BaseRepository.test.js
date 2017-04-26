@@ -64,5 +64,20 @@ describe('BaseRepository', () => {
             equal(entitiesDb.length, 3);
         }));
     });
+    describe('getByIds', () => {
+        it('get 3 entities by ids', () => __awaiter(this, void 0, void 0, function* () {
+            const entities = [];
+            for (let i = 0; i <= 6; i++) {
+                const entity = new EntityMinBase({});
+                entity['i'] = i;
+                entities.push(entity);
+                yield baseRepository.save(entity);
+            }
+            const entitiesDb = yield baseRepository.getByIds([
+                entities[0].id, entities[1].id, entities[2].id
+            ]);
+            equal(entitiesDb.length, 3);
+        }));
+    });
 });
 //# sourceMappingURL=BaseRepository.test.js.map

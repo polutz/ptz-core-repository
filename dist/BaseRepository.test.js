@@ -211,6 +211,53 @@ describe('BaseRepository', function () {
             }));
         });
     });
+    describe('getByIds', function () {
+        it('get 3 entities by ids', function () {
+            return __awaiter(undefined, void 0, void 0, regeneratorRuntime.mark(function _callee6() {
+                var entities, i, entity, entitiesDb;
+                return regeneratorRuntime.wrap(function _callee6$(_context6) {
+                    while (1) {
+                        switch (_context6.prev = _context6.next) {
+                            case 0:
+                                entities = [];
+                                i = 0;
+
+                            case 2:
+                                if (!(i <= 6)) {
+                                    _context6.next = 11;
+                                    break;
+                                }
+
+                                entity = new _ptzCoreDomain.EntityMinBase({});
+
+                                entity['i'] = i;
+                                entities.push(entity);
+                                _context6.next = 8;
+                                return baseRepository.save(entity);
+
+                            case 8:
+                                i++;
+                                _context6.next = 2;
+                                break;
+
+                            case 11:
+                                _context6.next = 13;
+                                return baseRepository.getByIds([entities[0].id, entities[1].id, entities[2].id]);
+
+                            case 13:
+                                entitiesDb = _context6.sent;
+
+                                (0, _ptzAssert.equal)(entitiesDb.length, 3);
+
+                            case 15:
+                            case 'end':
+                                return _context6.stop();
+                        }
+                    }
+                }, _callee6, this);
+            }));
+        });
+    });
 });
 //# sourceMappingURL=BaseRepository.test.js.map
 //# sourceMappingURL=BaseRepository.test.js.map
