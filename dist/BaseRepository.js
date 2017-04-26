@@ -6,32 +6,9 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) {
-            try {
-                step(generator.next(value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-        function rejected(value) {
-            try {
-                step(generator["throw"](value));
-            } catch (e) {
-                reject(e);
-            }
-        }
-        function step(result) {
-            result.done ? resolve(result.value) : new P(function (resolve) {
-                resolve(result.value);
-            }).then(fulfilled, rejected);
-        }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var BaseRepository = exports.BaseRepository = function () {
     function BaseRepository(db, collectionName) {
@@ -48,8 +25,8 @@ var BaseRepository = exports.BaseRepository = function () {
         }
     }, {
         key: "save",
-        value: function save(entity) {
-            return __awaiter(this, void 0, void 0, regeneratorRuntime.mark(function _callee() {
+        value: function () {
+            var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(entity) {
                 var result;
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
@@ -71,7 +48,13 @@ var BaseRepository = exports.BaseRepository = function () {
                     }
                 }, _callee, this);
             }));
-        }
+
+            function save(_x) {
+                return _ref.apply(this, arguments);
+            }
+
+            return save;
+        }()
     }, {
         key: "getById",
         value: function getById(id) {

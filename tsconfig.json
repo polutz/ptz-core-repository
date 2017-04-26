@@ -5,10 +5,10 @@
     "noImplicitAny": false,
     "removeComments": true,
     "preserveConstEnums": true,
-    "target": "ES6",
+    "target": "esnext",
     "sourceMap": true,
     "listFiles": false,
-    "outDir": "dist-es6/",
+    "outDir": "dist-esnext/",
     "allowSyntheticDefaultImports": true,
     "noUnusedLocals": true
   },
