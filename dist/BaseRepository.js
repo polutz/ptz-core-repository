@@ -33,7 +33,7 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
     });
 };
 
-var BaseRepository = function () {
+var BaseRepository = exports.BaseRepository = function () {
     function BaseRepository(db, collectionName) {
         _classCallCheck(this, BaseRepository);
 
@@ -101,6 +101,4 @@ var BaseRepository = function () {
     return BaseRepository;
 }();
 //# sourceMappingURL=BaseRepository.js.map
-
-
-exports.default = BaseRepository;
+//# sourceMappingURL=BaseRepository.js.map

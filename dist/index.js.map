@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../src/index.ts"],"names":[],"mappings":"AAAA,OAAO,cAAc,MAAM,kBAAkB,CAAC;AAE9C,OAAM,EACF,cAAc,EACjB,CAAC"}
+{"version":3,"sources":["../dist-es6/index.js"],"names":["BaseRepository"],"mappings":";;;;;;;;;;;2BAASA,c","file":"index.js","sourcesContent":["export { BaseRepository } from './BaseRepository';\n//# sourceMappingURL=index.js.map"]}

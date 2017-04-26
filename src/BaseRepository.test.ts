@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 import { equal, ok } from 'ptz-assert';
-import { EntityMinBase, IEntityMinBase } from 'ptz-core-domain';
-import BaseRepository from './BaseRepository';
+import { EntityMinBase } from 'ptz-core-domain';
+import { BaseRepository } from './index';
 
 const MONGO_URL = 'mongodb://localhost:27017/relay';
 var db, baseRepository;

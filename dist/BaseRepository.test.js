@@ -6,11 +6,7 @@ var _ptzAssert = require('ptz-assert');
 
 var _ptzCoreDomain = require('ptz-core-domain');
 
-var _BaseRepository = require('./BaseRepository');
-
-var _BaseRepository2 = _interopRequireDefault(_BaseRepository);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _index = require('./index');
 
 var __awaiter = undefined && undefined.__awaiter || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -52,7 +48,7 @@ describe('BaseRepository', function () {
                         case 2:
                             db = _context.sent;
 
-                            baseRepository = new _BaseRepository2.default(db, 'testCollection');
+                            baseRepository = new _index.BaseRepository(db, 'testCollection');
 
                         case 4:
                         case 'end':
@@ -147,4 +143,5 @@ describe('BaseRepository', function () {
         it('not found');
     });
 });
+//# sourceMappingURL=BaseRepository.test.js.map
 //# sourceMappingURL=BaseRepository.test.js.map

@@ -8,8 +8,9 @@
     "target": "ES6",
     "sourceMap": true,
     "listFiles": false,
-    "outDir": "dist/",
-    "allowSyntheticDefaultImports": true
+    "outDir": "dist-es6/",
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true
   },
   "include": [
     "typings/**/*.d.ts",
