@@ -129,18 +129,87 @@ describe('BaseRepository', function () {
         });
     });
     describe('find', function () {
-        it('limit by 3');
-        it('limit by 5');
-    });
-    describe('getOtherUsersWithSameUserNameOrEmail', function () {
-        it('find by email');
-        it('find by userName');
-        it('not found');
-    });
-    describe('getByUserNameOrEmail', function () {
-        it('find by email');
-        it('find by userName');
-        it('not found');
+        it('by Email', function () {
+            return __awaiter(undefined, void 0, void 0, regeneratorRuntime.mark(function _callee4() {
+                var entity, query, entityDb;
+                return regeneratorRuntime.wrap(function _callee4$(_context4) {
+                    while (1) {
+                        switch (_context4.prev = _context4.next) {
+                            case 0:
+                                entity = new _ptzCoreDomain.EntityMinBase({});
+
+                                entity['email'] = 'angeloocana@gmail.com';
+                                _context4.next = 4;
+                                return baseRepository.save(entity);
+
+                            case 4:
+                                query = {
+                                    email: entity['email']
+                                };
+                                _context4.next = 7;
+                                return baseRepository.find(query, { limit: 1 });
+
+                            case 7:
+                                entityDb = _context4.sent;
+
+                                (0, _ptzAssert.ok)(entityDb[0]);
+                                (0, _ptzAssert.equal)(entityDb[0]['email'], entity['email']);
+
+                            case 10:
+                            case 'end':
+                                return _context4.stop();
+                        }
+                    }
+                }, _callee4, this);
+            }));
+        });
+        it('limit by 3', function () {
+            return __awaiter(undefined, void 0, void 0, regeneratorRuntime.mark(function _callee5() {
+                var i, entity, query, entitiesDb;
+                return regeneratorRuntime.wrap(function _callee5$(_context5) {
+                    while (1) {
+                        switch (_context5.prev = _context5.next) {
+                            case 0:
+                                i = 0;
+
+                            case 1:
+                                if (!(i <= 6)) {
+                                    _context5.next = 10;
+                                    break;
+                                }
+
+                                entity = new _ptzCoreDomain.EntityMinBase({});
+
+                                entity['testLimit'] = true;
+                                entity['i'] = i;
+                                _context5.next = 7;
+                                return baseRepository.save(entity);
+
+                            case 7:
+                                i++;
+                                _context5.next = 1;
+                                break;
+
+                            case 10:
+                                query = {
+                                    testLimit: true
+                                };
+                                _context5.next = 13;
+                                return baseRepository.find(query, { limit: 3 });
+
+                            case 13:
+                                entitiesDb = _context5.sent;
+
+                                (0, _ptzAssert.equal)(entitiesDb.length, 3);
+
+                            case 15:
+                            case 'end':
+                                return _context5.stop();
+                        }
+                    }
+                }, _callee5, this);
+            }));
+        });
     });
 });
 //# sourceMappingURL=BaseRepository.test.js.map

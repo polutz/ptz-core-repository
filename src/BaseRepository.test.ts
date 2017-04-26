@@ -1,13 +1,12 @@
 import { MongoClient } from 'mongodb';
 import { equal, ok } from 'ptz-assert';
-import { EntityMinBase } from 'ptz-core-domain';
+import { EntityMinBase, IBaseRepository } from 'ptz-core-domain';
 import { BaseRepository } from './index';
 
 const MONGO_URL = 'mongodb://localhost:27017/relay';
-var db, baseRepository;
+var db, baseRepository: IBaseRepository<any>;
 
 /* tslint:disable:no-string-literal */
-/* tslint:disable:prefer-const */
 
 describe('BaseRepository', () => {
     beforeEach(async () => {
@@ -28,7 +27,7 @@ describe('BaseRepository', () => {
         });
 
         it('update', async () => {
-            let entity = new EntityMinBase({});
+            const entity = new EntityMinBase({});
 
             entity['name'] = 'teste';
 
@@ -48,22 +47,40 @@ describe('BaseRepository', () => {
     });
 
     describe('find', () => {
-        it('limit by 3');
-        it('limit by 5');
-    });
+        it('by Email', async () => {
+            const entity = new EntityMinBase({});
 
-    describe('getOtherUsersWithSameUserNameOrEmail', () => {
-        it('find by email');
-        it('find by userName');
-        it('not found');
-    });
+            entity['email'] = 'angeloocana@gmail.com';
 
-    describe('getByUserNameOrEmail', () => {
-        it('find by email');
-        it('find by userName');
-        it('not found');
+            await baseRepository.save(entity);
+
+            const query = {
+                email: entity['email']
+            };
+
+            const entityDb = await baseRepository.find(query, { limit: 1 });
+
+            ok(entityDb[0]);
+            equal(entityDb[0]['email'], entity['email']);
+        });
+
+        it('limit by 3', async () => {
+            for (let i = 0; i <= 6; i++) {
+                const entity = new EntityMinBase({});
+                entity['testLimit'] = true;
+                entity['i'] = i;
+                await baseRepository.save(entity);
+            }
+
+            const query = {
+                testLimit: true
+            };
+
+            const entitiesDb = await baseRepository.find(query, { limit: 3 });
+
+            equal(entitiesDb.length, 3);
+        });
     });
 });
 
 /* tslint:enable:no-string-literal */
-/* tslint:enable:prefer-const */

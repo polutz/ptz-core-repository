@@ -26,7 +26,7 @@ describe('BaseRepository', () => {
             equal(entityDb.id, entity.id);
         }));
         it('update', () => __awaiter(this, void 0, void 0, function* () {
-            let entity = new EntityMinBase({});
+            const entity = new EntityMinBase({});
             entity['name'] = 'teste';
             yield baseRepository.save(entity);
             const newName = 'teste2';
@@ -39,18 +39,30 @@ describe('BaseRepository', () => {
         }));
     });
     describe('find', () => {
-        it('limit by 3');
-        it('limit by 5');
-    });
-    describe('getOtherUsersWithSameUserNameOrEmail', () => {
-        it('find by email');
-        it('find by userName');
-        it('not found');
-    });
-    describe('getByUserNameOrEmail', () => {
-        it('find by email');
-        it('find by userName');
-        it('not found');
+        it('by Email', () => __awaiter(this, void 0, void 0, function* () {
+            const entity = new EntityMinBase({});
+            entity['email'] = 'angeloocana@gmail.com';
+            yield baseRepository.save(entity);
+            const query = {
+                email: entity['email']
+            };
+            const entityDb = yield baseRepository.find(query, { limit: 1 });
+            ok(entityDb[0]);
+            equal(entityDb[0]['email'], entity['email']);
+        }));
+        it('limit by 3', () => __awaiter(this, void 0, void 0, function* () {
+            for (let i = 0; i <= 6; i++) {
+                const entity = new EntityMinBase({});
+                entity['testLimit'] = true;
+                entity['i'] = i;
+                yield baseRepository.save(entity);
+            }
+            const query = {
+                testLimit: true
+            };
+            const entitiesDb = yield baseRepository.find(query, { limit: 3 });
+            equal(entitiesDb.length, 3);
+        }));
     });
 });
 //# sourceMappingURL=BaseRepository.test.js.map
