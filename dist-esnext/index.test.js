@@ -1,8 +1,12 @@
 import { ok } from 'ptz-assert';
-import { BaseRepository } from './index';
+import * as index from './index';
 describe('ptz-core-repository', () => {
     describe('exports', () => {
-        it('BaseRepository', () => ok(BaseRepository));
+        it('save', () => ok(index.save));
+        it('find', () => ok(index.find));
+        it('getDbCollection', () => ok(index.getDbCollection));
+        it('getById', () => ok(index.getById));
+        it('getByIds', () => ok(index.getByIds));
     });
 });
 //# sourceMappingURL=index.test.js.map

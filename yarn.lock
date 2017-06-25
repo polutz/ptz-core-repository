@@ -10,6 +10,14 @@
   version "7.0.14"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.14.tgz#1470fa002a113316ac9d9ad163fc738c7a0de2a4"
 
+"@types/ramda@0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.0.10.tgz#b3627f8b8a2413ac51d768440f5e836943f9649e"
+
+"@types/shortid@0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@types/shortid/-/shortid-0.0.29.tgz#8093ee0416a6e2bf2aa6338109114b3fbffa0e9b"
+
 abbrev@1, abbrev@1.0.x:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.0.9.tgz#91b4792588a7738c25f35dd6f63752a2f8776135"
@@ -274,6 +282,16 @@ babel-helper-regex@^6.24.1:
     babel-types "^6.24.1"
     lodash "^4.2.0"
 
+babel-helper-remap-async-to-generator@^6.24.1:
+  version "6.24.1"
+  resolved "https://registry.yarnpkg.com/babel-helper-remap-async-to-generator/-/babel-helper-remap-async-to-generator-6.24.1.tgz#5ec581827ad723fecdd381f1c928390676e4551b"
+  dependencies:
+    babel-helper-function-name "^6.24.1"
+    babel-runtime "^6.22.0"
+    babel-template "^6.24.1"
+    babel-traverse "^6.24.1"
+    babel-types "^6.24.1"
+
 babel-helper-replace-supers@^6.24.1:
   version "6.24.1"
   resolved "https://registry.yarnpkg.com/babel-helper-replace-supers/-/babel-helper-replace-supers-6.24.1.tgz#bf6dbfe43938d17369a213ca8a8bf74b6a90ab1a"
@@ -302,6 +320,22 @@ babel-plugin-check-es2015-constants@^6.22.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-check-es2015-constants/-/babel-plugin-check-es2015-constants-6.22.0.tgz#35157b101426fd2ffd3da3f75c7d1e91835bbf8a"
   dependencies:
+    babel-runtime "^6.22.0"
+
+babel-plugin-syntax-async-functions@^6.8.0:
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-syntax-async-functions/-/babel-plugin-syntax-async-functions-6.13.0.tgz#cad9cad1191b5ad634bf30ae0872391e0647be95"
+
+babel-plugin-syntax-trailing-function-commas@^6.22.0:
+  version "6.22.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-syntax-trailing-function-commas/-/babel-plugin-syntax-trailing-function-commas-6.22.0.tgz#ba0360937f8d06e40180a43fe0d5616fff532cf3"
+
+babel-plugin-transform-async-to-generator@^6.24.1:
+  version "6.24.1"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-async-to-generator/-/babel-plugin-transform-async-to-generator-6.24.1.tgz#6536e378aff6cb1d5517ac0e40eb3e9fc8d08761"
+  dependencies:
+    babel-helper-remap-async-to-generator "^6.24.1"
+    babel-plugin-syntax-async-functions "^6.8.0"
     babel-runtime "^6.22.0"
 
 babel-plugin-transform-es2015-arrow-functions@^6.22.0:
@@ -521,6 +555,13 @@ babel-preset-es2015@^6.24.1:
     babel-plugin-transform-es2015-typeof-symbol "^6.22.0"
     babel-plugin-transform-es2015-unicode-regex "^6.24.1"
     babel-plugin-transform-regenerator "^6.24.1"
+
+babel-preset-es2017@^6.24.1:
+  version "6.24.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-es2017/-/babel-preset-es2017-6.24.1.tgz#597beadfb9f7f208bcfd8a12e9b2b29b8b2f14d1"
+  dependencies:
+    babel-plugin-syntax-trailing-function-commas "^6.22.0"
+    babel-plugin-transform-async-to-generator "^6.24.1"
 
 babel-register@^6.24.1:
   version "6.24.1"
@@ -2122,17 +2163,44 @@ ptz-assert@^1.6.3:
   dependencies:
     assert "^1.4.1"
 
-ptz-core-domain@^1.1.4:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/ptz-core-domain/-/ptz-core-domain-1.5.0.tgz#3fd73d5b489501b4da5d04d4e87a40597579bec2"
+ptz-core-domain@^1.3.3:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/ptz-core-domain/-/ptz-core-domain-1.5.2.tgz#3bd7a4dbefb90cd31e93068c1931dd2dbb729988"
   dependencies:
-    ptz-log "^1.0.0"
+    ptz-core-domain "^1.3.3"
+    ptz-log "^1.1.0"
     ptz-validations "^1.0.0"
     shortid "^2.2.6"
+
+ptz-core-domain@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ptz-core-domain/-/ptz-core-domain-2.0.0.tgz#4b0b4cb9a9ede97cdbd3936ff9759aba889375a1"
+  dependencies:
+    "@types/ramda" "0.0.10"
+    ptz-core-domain "^1.3.3"
+    ptz-fp "^1.1.0"
+    ptz-log "^1.1.0"
+    ptz-validations "^2.0.0"
+    ramda "^0.24.0"
+    shortid "^2.2.6"
+
+ptz-fp@^1.0.0, ptz-fp@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ptz-fp/-/ptz-fp-1.1.0.tgz#6f9af6c95e64c1d2f0596cd207320ad5a8bd3251"
+  dependencies:
+    "@types/ramda" "0.0.10"
+    ptz-log "^1.0.0"
+    ramda "^0.24.0"
 
 ptz-log@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ptz-log/-/ptz-log-1.0.1.tgz#8a91c18a4b34a70241ed9a0489b128c21c8ccc75"
+  dependencies:
+    moment "^2.18.1"
+
+ptz-log@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/ptz-log/-/ptz-log-1.1.0.tgz#a5f81680da30e491e49c6a6022ec4972506d473b"
   dependencies:
     moment "^2.18.1"
 
@@ -2141,6 +2209,17 @@ ptz-validations@^1.0.0:
   resolved "https://registry.yarnpkg.com/ptz-validations/-/ptz-validations-1.2.1.tgz#30b00823ae1daf03878909134f5db5f41423aa3c"
   dependencies:
     ptz-log "^1.0.0"
+
+ptz-validations@^2.0.0:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/ptz-validations/-/ptz-validations-2.0.3.tgz#ecc91274991d20b0a1abd6d70517f03bf6e72f77"
+  dependencies:
+    "@types/ramda" "0.0.10"
+    "@types/shortid" "0.0.29"
+    ptz-fp "^1.0.0"
+    ptz-log "^1.0.0"
+    ramda "^0.24.1"
+    shortid "^2.2.8"
 
 punycode@^1.4.1:
   version "1.4.1"
@@ -2153,6 +2232,10 @@ qs@~6.3.0:
 qs@~6.4.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
+
+ramda@^0.24.0, ramda@^0.24.1:
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.24.1.tgz#c3b7755197f35b8dc3502228262c4c91ddb6b857"
 
 randomatic@^1.1.3:
   version "1.1.6"
@@ -2412,7 +2495,7 @@ shell-quote@^1.6.1:
     array-reduce "~0.0.0"
     jsonify "~0.0.0"
 
-shortid@^2.2.6:
+shortid@^2.2.6, shortid@^2.2.8:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.8.tgz#033b117d6a2e975804f6f0969dbe7d3d0b355131"
 

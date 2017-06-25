@@ -6,10 +6,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _BaseRepository = require('./BaseRepository');
 
-Object.defineProperty(exports, 'BaseRepository', {
-  enumerable: true,
-  get: function get() {
-    return _BaseRepository.BaseRepository;
-  }
+Object.keys(_BaseRepository).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _BaseRepository[key];
+    }
+  });
 });
 //# sourceMappingURL=index.js.map

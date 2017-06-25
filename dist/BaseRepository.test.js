@@ -4,14 +4,16 @@ var _mongodb = require('mongodb');
 
 var _ptzAssert = require('ptz-assert');
 
-var _ptzCoreDomain = require('ptz-core-domain');
-
 var _index = require('./index');
+
+var BaseRepository = _interopRequireWildcard(_index);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 var MONGO_URL = 'mongodb://localhost:27017/relay';
-var db, baseRepository;
+var db;
 describe('BaseRepository', function () {
     beforeEach(_asyncToGenerator(regeneratorRuntime.mark(function _callee() {
         return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -24,9 +26,7 @@ describe('BaseRepository', function () {
                     case 2:
                         db = _context.sent;
 
-                        baseRepository = new _index.BaseRepository(db, 'testCollection');
-
-                    case 4:
+                    case 3:
                     case 'end':
                         return _context.stop();
                 }
@@ -40,13 +40,16 @@ describe('BaseRepository', function () {
                 while (1) {
                     switch (_context2.prev = _context2.next) {
                         case 0:
-                            entity = new _ptzCoreDomain.EntityMinBase({});
+                            entity = {
+                                errors: [],
+                                id: 'testid'
+                            };
                             _context2.next = 3;
-                            return baseRepository.save(entity);
+                            return BaseRepository.save(entity, db, 'testConnection');
 
                         case 3:
                             _context2.next = 5;
-                            return baseRepository.getById(entity.id);
+                            return BaseRepository.getById(entity.id, db, 'testConnection');
 
                         case 5:
                             entityDb = _context2.sent;
@@ -67,22 +70,25 @@ describe('BaseRepository', function () {
                 while (1) {
                     switch (_context3.prev = _context3.next) {
                         case 0:
-                            entity = new _ptzCoreDomain.EntityMinBase({});
+                            entity = {
+                                errors: [],
+                                id: 'testid'
+                            };
 
                             entity['name'] = 'teste';
                             _context3.next = 4;
-                            return baseRepository.save(entity);
+                            return BaseRepository.save(entity, db, 'testConnection');
 
                         case 4:
                             newName = 'teste2';
 
                             entity['name'] = newName;
                             _context3.next = 8;
-                            return baseRepository.save(entity);
+                            return BaseRepository.save(entity, db, 'testConnection');
 
                         case 8:
                             _context3.next = 10;
-                            return baseRepository.getById(entity.id);
+                            return BaseRepository.getById(entity.id, db, 'testConnection');
 
                         case 10:
                             entityDb = _context3.sent;
@@ -106,18 +112,21 @@ describe('BaseRepository', function () {
                 while (1) {
                     switch (_context4.prev = _context4.next) {
                         case 0:
-                            entity = new _ptzCoreDomain.EntityMinBase({});
+                            entity = {
+                                errors: [],
+                                id: 'testid'
+                            };
 
                             entity['email'] = 'angeloocana@gmail.com';
                             _context4.next = 4;
-                            return baseRepository.save(entity);
+                            return BaseRepository.save(entity, db, 'testConnection');
 
                         case 4:
                             query = {
                                 email: entity['email']
                             };
                             _context4.next = 7;
-                            return baseRepository.find(query, { limit: 1 });
+                            return BaseRepository.find(query, { limit: 1 }, db, 'testConnection');
 
                         case 7:
                             entityDb = _context4.sent;
@@ -146,12 +155,15 @@ describe('BaseRepository', function () {
                                 break;
                             }
 
-                            entity = new _ptzCoreDomain.EntityMinBase({});
+                            entity = {
+                                errors: [],
+                                id: 'test' + i
+                            };
 
                             entity['testLimit'] = true;
                             entity['i'] = i;
                             _context5.next = 7;
-                            return baseRepository.save(entity);
+                            return BaseRepository.save(entity, db, 'testConnection');
 
                         case 7:
                             i++;
@@ -163,7 +175,7 @@ describe('BaseRepository', function () {
                                 testLimit: true
                             };
                             _context5.next = 13;
-                            return baseRepository.find(query, { limit: 3 });
+                            return BaseRepository.find(query, { limit: 3 }, db, 'testConnection');
 
                         case 13:
                             entitiesDb = _context5.sent;
@@ -194,12 +206,15 @@ describe('BaseRepository', function () {
                                 break;
                             }
 
-                            entity = new _ptzCoreDomain.EntityMinBase({});
+                            entity = {
+                                errors: [],
+                                id: 'test' + i
+                            };
 
                             entity['i'] = i;
                             entities.push(entity);
                             _context6.next = 8;
-                            return baseRepository.save(entity);
+                            return BaseRepository.save(entity, db, 'testConnection');
 
                         case 8:
                             i++;
@@ -208,7 +223,7 @@ describe('BaseRepository', function () {
 
                         case 11:
                             _context6.next = 13;
-                            return baseRepository.getByIds([entities[0].id, entities[1].id, entities[2].id]);
+                            return BaseRepository.getByIds([entities[0].id, entities[1].id, entities[2].id], db, 'testConnection');
 
                         case 13:
                             entitiesDb = _context6.sent;

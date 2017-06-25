@@ -1,2 +1,2 @@
-export { BaseRepository } from './BaseRepository';
+export * from './BaseRepository';
 //# sourceMappingURL=index.js.map

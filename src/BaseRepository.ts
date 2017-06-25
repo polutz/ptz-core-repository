@@ -1,51 +1,43 @@
-import { IBaseRepository, IEntityMinBase } from 'ptz-core-domain';
+import { IEntityMinBase } from 'ptz-core-domain';
 
-export class BaseRepository<T> implements IBaseRepository<T> {
-    collectionName: string;
-    db;
+const getDbCollection = (db, collectionName) => {
+    return db.collection(collectionName);
+};
 
-    constructor(db, collectionName: string) {
-        this.db = db;
-        this.collectionName = collectionName;
-    }
+const save = async (entity: IEntityMinBase, db, collectionName) => {
+    const result = await getDbCollection(db, collectionName)
+        .replaceOne({ _id: entity.id }, entity, { upsert: true });
+    entity = result.ops[0];
+    return Promise.resolve(entity);
+};
 
-    getDbCollection() {
-        return this.db.collection(this.collectionName);
-    }
+const getById = (id: string, db, collectionName) => {
+    const query = {
+        _id: id
+    };
 
-    async save(entity: IEntityMinBase): Promise<IEntityMinBase> {
-        const result = await this.getDbCollection()
-            .replaceOne({ _id: entity.id }, entity, { upsert: true });
-        entity = result.ops[0];
-        return Promise.resolve(entity);
-    }
+    return getDbCollection(db, collectionName)
+        .findOne(query);
+};
 
-    getById(id: string): Promise<IEntityMinBase> {
-        const query = {
-            _id: id
-        };
+const getByIds = (ids: string[], db, collectionName) => {
+    const query = {
+        _id: {
+            $in: ids
+        }
+    };
 
-        return this.getDbCollection()
-            .findOne(query);
-    }
+    return getDbCollection(db, collectionName)
+        .find(query)
+        .toArray();
+};
 
-    getByIds(ids: string[]): Promise<IEntityMinBase[]> {
-        const query = {
-            _id: {
-                $in: ids
-            }
-        };
+const find = (query: any, options: { limit: number }, db, collectionName) => {
+    const result = getDbCollection(db, collectionName)
+        .find(query, {}, options)
+        .toArray();
 
-        return this.getDbCollection()
-            .find(query)
-            .toArray();
-    }
+    return result;
+};
 
-    find(query: any, options: { limit: number }): Promise<IEntityMinBase[]> {
-        const result = this.getDbCollection()
-            .find(query, {}, options)
-            .toArray();
-
-        return result;
-    }
-}
+export { save, find, getDbCollection, getById, getByIds };

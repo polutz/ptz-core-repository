@@ -4,84 +4,61 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var getDbCollection = function getDbCollection(db, collectionName) {
+    return db.collection(collectionName);
+};
+var save = function () {
+    var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(entity, db, collectionName) {
+        var result;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+            while (1) {
+                switch (_context.prev = _context.next) {
+                    case 0:
+                        _context.next = 2;
+                        return getDbCollection(db, collectionName).replaceOne({ _id: entity.id }, entity, { upsert: true });
 
-var BaseRepository = exports.BaseRepository = function () {
-    function BaseRepository(db, collectionName) {
-        _classCallCheck(this, BaseRepository);
+                    case 2:
+                        result = _context.sent;
 
-        this.db = db;
-        this.collectionName = collectionName;
-    }
+                        entity = result.ops[0];
+                        return _context.abrupt("return", Promise.resolve(entity));
 
-    _createClass(BaseRepository, [{
-        key: "getDbCollection",
-        value: function getDbCollection() {
-            return this.db.collection(this.collectionName);
-        }
-    }, {
-        key: "save",
-        value: function () {
-            var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(entity) {
-                var result;
-                return regeneratorRuntime.wrap(function _callee$(_context) {
-                    while (1) {
-                        switch (_context.prev = _context.next) {
-                            case 0:
-                                _context.next = 2;
-                                return this.getDbCollection().replaceOne({ _id: entity.id }, entity, { upsert: true });
-
-                            case 2:
-                                result = _context.sent;
-
-                                entity = result.ops[0];
-                                return _context.abrupt("return", Promise.resolve(entity));
-
-                            case 5:
-                            case "end":
-                                return _context.stop();
-                        }
-                    }
-                }, _callee, this);
-            }));
-
-            function save(_x) {
-                return _ref.apply(this, arguments);
-            }
-
-            return save;
-        }()
-    }, {
-        key: "getById",
-        value: function getById(id) {
-            var query = {
-                _id: id
-            };
-            return this.getDbCollection().findOne(query);
-        }
-    }, {
-        key: "getByIds",
-        value: function getByIds(ids) {
-            var query = {
-                _id: {
-                    $in: ids
+                    case 5:
+                    case "end":
+                        return _context.stop();
                 }
-            };
-            return this.getDbCollection().find(query).toArray();
-        }
-    }, {
-        key: "find",
-        value: function find(query, options) {
-            var result = this.getDbCollection().find(query, {}, options).toArray();
-            return result;
-        }
-    }]);
+            }
+        }, _callee, undefined);
+    }));
 
-    return BaseRepository;
+    return function save(_x, _x2, _x3) {
+        return _ref.apply(this, arguments);
+    };
 }();
+var getById = function getById(id, db, collectionName) {
+    var query = {
+        _id: id
+    };
+    return getDbCollection(db, collectionName).findOne(query);
+};
+var getByIds = function getByIds(ids, db, collectionName) {
+    var query = {
+        _id: {
+            $in: ids
+        }
+    };
+    return getDbCollection(db, collectionName).find(query).toArray();
+};
+var find = function find(query, options, db, collectionName) {
+    var result = getDbCollection(db, collectionName).find(query, {}, options).toArray();
+    return result;
+};
+exports.save = save;
+exports.find = find;
+exports.getDbCollection = getDbCollection;
+exports.getById = getById;
+exports.getByIds = getByIds;
 //# sourceMappingURL=BaseRepository.js.map
 //# sourceMappingURL=BaseRepository.js.map
