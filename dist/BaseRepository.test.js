@@ -12,8 +12,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-var MONGO_URL = 'mongodb://localhost:27017/relay';
+var MONGO_URL = 'mongodb://localhost:27017/ptz-core-repo';
 var db;
+var fn;
+var save;
 describe('BaseRepository', function () {
     beforeEach(_asyncToGenerator(regeneratorRuntime.mark(function _callee() {
         return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -26,7 +28,10 @@ describe('BaseRepository', function () {
                     case 2:
                         db = _context.sent;
 
-                    case 3:
+                        fn = BaseRepository.getDbCollection(db, 'testConnection');
+                        save = BaseRepository.save(fn);
+
+                    case 5:
                     case 'end':
                         return _context.stop();
                 }
@@ -41,15 +46,14 @@ describe('BaseRepository', function () {
                     switch (_context2.prev = _context2.next) {
                         case 0:
                             entity = {
-                                errors: [],
                                 id: 'testid'
                             };
                             _context2.next = 3;
-                            return BaseRepository.save(entity, db, 'testConnection');
+                            return save(entity);
 
                         case 3:
                             _context2.next = 5;
-                            return BaseRepository.getById(entity.id, db, 'testConnection');
+                            return BaseRepository.getById(fn, entity.id);
 
                         case 5:
                             entityDb = _context2.sent;
@@ -71,24 +75,23 @@ describe('BaseRepository', function () {
                     switch (_context3.prev = _context3.next) {
                         case 0:
                             entity = {
-                                errors: [],
                                 id: 'testid'
                             };
 
                             entity['name'] = 'teste';
                             _context3.next = 4;
-                            return BaseRepository.save(entity, db, 'testConnection');
+                            return save(entity);
 
                         case 4:
                             newName = 'teste2';
 
                             entity['name'] = newName;
                             _context3.next = 8;
-                            return BaseRepository.save(entity, db, 'testConnection');
+                            return save(entity);
 
                         case 8:
                             _context3.next = 10;
-                            return BaseRepository.getById(entity.id, db, 'testConnection');
+                            return BaseRepository.getById(fn, entity.id);
 
                         case 10:
                             entityDb = _context3.sent;
@@ -113,20 +116,19 @@ describe('BaseRepository', function () {
                     switch (_context4.prev = _context4.next) {
                         case 0:
                             entity = {
-                                errors: [],
                                 id: 'testid'
                             };
 
                             entity['email'] = 'angeloocana@gmail.com';
                             _context4.next = 4;
-                            return BaseRepository.save(entity, db, 'testConnection');
+                            return save(entity);
 
                         case 4:
                             query = {
                                 email: entity['email']
                             };
                             _context4.next = 7;
-                            return BaseRepository.find(query, { limit: 1 }, db, 'testConnection');
+                            return BaseRepository.find(fn, query, { limit: 1 });
 
                         case 7:
                             entityDb = _context4.sent;
@@ -156,14 +158,13 @@ describe('BaseRepository', function () {
                             }
 
                             entity = {
-                                errors: [],
                                 id: 'test' + i
                             };
 
                             entity['testLimit'] = true;
                             entity['i'] = i;
                             _context5.next = 7;
-                            return BaseRepository.save(entity, db, 'testConnection');
+                            return save(entity);
 
                         case 7:
                             i++;
@@ -175,7 +176,7 @@ describe('BaseRepository', function () {
                                 testLimit: true
                             };
                             _context5.next = 13;
-                            return BaseRepository.find(query, { limit: 3 }, db, 'testConnection');
+                            return BaseRepository.find(fn, query, { limit: 3 });
 
                         case 13:
                             entitiesDb = _context5.sent;
@@ -207,14 +208,13 @@ describe('BaseRepository', function () {
                             }
 
                             entity = {
-                                errors: [],
                                 id: 'test' + i
                             };
 
                             entity['i'] = i;
                             entities.push(entity);
                             _context6.next = 8;
-                            return BaseRepository.save(entity, db, 'testConnection');
+                            return save(entity);
 
                         case 8:
                             i++;
@@ -223,7 +223,7 @@ describe('BaseRepository', function () {
 
                         case 11:
                             _context6.next = 13;
-                            return BaseRepository.getByIds([entities[0].id, entities[1].id, entities[2].id], db, 'testConnection');
+                            return BaseRepository.getByIds(fn, [entities[0].id, entities[1].id, entities[2].id]);
 
                         case 13:
                             entitiesDb = _context6.sent;

@@ -1,34 +1,35 @@
-const getDbCollection = (db, collectionName) => {
+import R from 'ramda';
+const getDbCollection = R.curry((db, collectionName) => {
     return db.collection(collectionName);
-};
-const save = async (entity, db, collectionName) => {
-    const result = await getDbCollection(db, collectionName)
+});
+const save = R.curry(async (fnGetDbCollection, entity) => {
+    const result = await fnGetDbCollection
         .replaceOne({ _id: entity.id }, entity, { upsert: true });
     entity = result.ops[0];
     return Promise.resolve(entity);
-};
-const getById = (id, db, collectionName) => {
+});
+const getById = R.curry((fnGetDbCollection, id) => {
     const query = {
         _id: id
     };
-    return getDbCollection(db, collectionName)
+    return fnGetDbCollection
         .findOne(query);
-};
-const getByIds = (ids, db, collectionName) => {
+});
+const getByIds = R.curry((fnGetDbCollection, ids) => {
     const query = {
         _id: {
             $in: ids
         }
     };
-    return getDbCollection(db, collectionName)
+    return fnGetDbCollection
         .find(query)
         .toArray();
-};
-const find = (query, options, db, collectionName) => {
-    const result = getDbCollection(db, collectionName)
+});
+const find = R.curry((fnGetDbCollection, query, options) => {
+    const result = fnGetDbCollection
         .find(query, {}, options)
         .toArray();
     return result;
-};
+});
 export { save, find, getDbCollection, getById, getByIds };
 //# sourceMappingURL=BaseRepository.js.map

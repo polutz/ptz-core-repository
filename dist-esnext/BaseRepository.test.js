@@ -1,34 +1,36 @@
 import { MongoClient } from 'mongodb';
 import { equal, ok } from 'ptz-assert';
 import * as BaseRepository from './index';
-const MONGO_URL = 'mongodb://localhost:27017/relay';
+const MONGO_URL = 'mongodb://localhost:27017/ptz-core-repo';
 var db;
+var fn;
+var save;
 describe('BaseRepository', () => {
     beforeEach(async () => {
         db = await MongoClient.connect(MONGO_URL);
+        fn = BaseRepository.getDbCollection(db, 'testConnection');
+        save = BaseRepository.save(fn);
     });
     describe('save', () => {
         it('insert', async () => {
             const entity = {
-                errors: [],
                 id: 'testid'
             };
-            await BaseRepository.save(entity, db, 'testConnection');
-            const entityDb = await BaseRepository.getById(entity.id, db, 'testConnection');
+            await save(entity);
+            const entityDb = await BaseRepository.getById(fn, entity.id);
             ok(entityDb);
             equal(entityDb.id, entity.id);
         });
         it('update', async () => {
             const entity = {
-                errors: [],
                 id: 'testid'
             };
             entity['name'] = 'teste';
-            await BaseRepository.save(entity, db, 'testConnection');
+            await save(entity);
             const newName = 'teste2';
             entity['name'] = newName;
-            await BaseRepository.save(entity, db, 'testConnection');
-            const entityDb = await BaseRepository.getById(entity.id, db, 'testConnection');
+            await save(entity);
+            const entityDb = await BaseRepository.getById(fn, entity.id);
             ok(entityDb);
             equal(entityDb.id, entity.id);
             equal(entityDb['name'], newName);
@@ -37,32 +39,30 @@ describe('BaseRepository', () => {
     describe('find', () => {
         it('by Email', async () => {
             const entity = {
-                errors: [],
                 id: 'testid'
             };
             entity['email'] = 'angeloocana@gmail.com';
-            await BaseRepository.save(entity, db, 'testConnection');
+            await save(entity);
             const query = {
                 email: entity['email']
             };
-            const entityDb = await BaseRepository.find(query, { limit: 1 }, db, 'testConnection');
+            const entityDb = await BaseRepository.find(fn, query, { limit: 1 });
             ok(entityDb[0]);
             equal(entityDb[0]['email'], entity['email']);
         });
         it('limit by 3', async () => {
             for (let i = 0; i <= 6; i++) {
                 const entity = {
-                    errors: [],
                     id: 'test' + i
                 };
                 entity['testLimit'] = true;
                 entity['i'] = i;
-                await BaseRepository.save(entity, db, 'testConnection');
+                await save(entity);
             }
             const query = {
                 testLimit: true
             };
-            const entitiesDb = await BaseRepository.find(query, { limit: 3 }, db, 'testConnection');
+            const entitiesDb = await BaseRepository.find(fn, query, { limit: 3 });
             equal(entitiesDb.length, 3);
         });
     });
@@ -71,16 +71,15 @@ describe('BaseRepository', () => {
             const entities = [];
             for (let i = 0; i <= 6; i++) {
                 const entity = {
-                    errors: [],
                     id: 'test' + i
                 };
                 entity['i'] = i;
                 entities.push(entity);
-                await BaseRepository.save(entity, db, 'testConnection');
+                await save(entity);
             }
-            const entitiesDb = await BaseRepository.getByIds([
+            const entitiesDb = await BaseRepository.getByIds(fn, [
                 entities[0].id, entities[1].id, entities[2].id
-            ], db, 'testConnection');
+            ]);
             equal(entitiesDb.length, 3);
         });
     });

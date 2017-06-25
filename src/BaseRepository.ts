@@ -1,43 +1,44 @@
 import { IEntityMinBase } from 'ptz-core-domain';
+import R from 'ramda';
 
-const getDbCollection = (db, collectionName) => {
+const getDbCollection = R.curry((db: any, collectionName: string) => {
     return db.collection(collectionName);
-};
+});
 
-const save = async (entity: IEntityMinBase, db, collectionName) => {
-    const result = await getDbCollection(db, collectionName)
+const save = R.curry(async (fnGetDbCollection: any, entity: IEntityMinBase) => {
+    const result = await fnGetDbCollection
         .replaceOne({ _id: entity.id }, entity, { upsert: true });
     entity = result.ops[0];
     return Promise.resolve(entity);
-};
+});
 
-const getById = (id: string, db, collectionName) => {
+const getById = R.curry((fnGetDbCollection: any, id: string) => {
     const query = {
         _id: id
     };
 
-    return getDbCollection(db, collectionName)
+    return fnGetDbCollection
         .findOne(query);
-};
+});
 
-const getByIds = (ids: string[], db, collectionName) => {
+const getByIds = R.curry((fnGetDbCollection: any, ids: string[]) => {
     const query = {
         _id: {
             $in: ids
         }
     };
 
-    return getDbCollection(db, collectionName)
+    return fnGetDbCollection
         .find(query)
         .toArray();
-};
+});
 
-const find = (query: any, options: { limit: number }, db, collectionName) => {
-    const result = getDbCollection(db, collectionName)
+const find = R.curry((fnGetDbCollection: any, query: any, options: { limit: number }) => {
+    const result = fnGetDbCollection
         .find(query, {}, options)
         .toArray();
 
     return result;
-};
+});
 
 export { save, find, getDbCollection, getById, getByIds };
