@@ -16,8 +16,8 @@ describe('ptz-core-repository', function () {
         it('find', function () {
             return (0, _ptzAssert.ok)(index.find);
         });
-        it('getDbCollection', function () {
-            return (0, _ptzAssert.ok)(index.getDbCollection);
+        it('getCollection', function () {
+            return (0, _ptzAssert.ok)(index.getCollection);
         });
         it('getById', function () {
             return (0, _ptzAssert.ok)(index.getById);

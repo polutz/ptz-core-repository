@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.getByIds = exports.getById = exports.getDbCollection = exports.find = exports.save = undefined;
+exports.getByIds = exports.getById = exports.getCollection = exports.find = exports.save = undefined;
 
 var _ramda = require('ramda');
 
@@ -13,18 +13,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-var getDbCollection = _ramda2.default.curry(function (db, collectionName) {
+var getCollection = _ramda2.default.curry(function (db, collectionName) {
     return db.collection(collectionName);
 });
 var save = _ramda2.default.curry(function () {
-    var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(fnGetDbCollection, entity) {
+    var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(collection, entity) {
         var result;
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
                     case 0:
                         _context.next = 2;
-                        return fnGetDbCollection.replaceOne({ _id: entity.id }, entity, { upsert: true });
+                        return collection.replaceOne({ _id: entity.id }, entity, { upsert: true });
 
                     case 2:
                         result = _context.sent;
@@ -44,27 +44,26 @@ var save = _ramda2.default.curry(function () {
         return _ref.apply(this, arguments);
     };
 }());
-var getById = _ramda2.default.curry(function (fnGetDbCollection, id) {
+var getById = _ramda2.default.curry(function (collection, id) {
     var query = {
         _id: id
     };
-    return fnGetDbCollection.findOne(query);
+    return collection.findOne(query);
 });
-var getByIds = _ramda2.default.curry(function (fnGetDbCollection, ids) {
+var getByIds = _ramda2.default.curry(function (collection, ids) {
     var query = {
         _id: {
             $in: ids
         }
     };
-    return fnGetDbCollection.find(query).toArray();
+    return collection.find(query).toArray();
 });
-var find = _ramda2.default.curry(function (fnGetDbCollection, query, options) {
-    var result = fnGetDbCollection.find(query, {}, options).toArray();
-    return result;
+var find = _ramda2.default.curry(function (collection, query, options) {
+    return collection.find(query, {}, options).toArray();
 });
 exports.save = save;
 exports.find = find;
-exports.getDbCollection = getDbCollection;
+exports.getCollection = getCollection;
 exports.getById = getById;
 exports.getByIds = getByIds;
 //# sourceMappingURL=BaseRepository.js.map

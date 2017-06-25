@@ -3,13 +3,13 @@ import { equal, ok } from 'ptz-assert';
 import * as BaseRepository from './index';
 const MONGO_URL = 'mongodb://localhost:27017/ptz-core-repo';
 var db;
-var fn;
+var collection;
 var save;
 describe('BaseRepository', () => {
     beforeEach(async () => {
         db = await MongoClient.connect(MONGO_URL);
-        fn = BaseRepository.getDbCollection(db, 'testConnection');
-        save = BaseRepository.save(fn);
+        collection = BaseRepository.getCollection(db, 'testConnection');
+        save = BaseRepository.save(collection);
     });
     describe('save', () => {
         it('insert', async () => {
@@ -17,7 +17,7 @@ describe('BaseRepository', () => {
                 id: 'testid'
             };
             await save(entity);
-            const entityDb = await BaseRepository.getById(fn, entity.id);
+            const entityDb = await BaseRepository.getById(collection, entity.id);
             ok(entityDb);
             equal(entityDb.id, entity.id);
         });
@@ -30,7 +30,7 @@ describe('BaseRepository', () => {
             const newName = 'teste2';
             entity['name'] = newName;
             await save(entity);
-            const entityDb = await BaseRepository.getById(fn, entity.id);
+            const entityDb = await BaseRepository.getById(collection, entity.id);
             ok(entityDb);
             equal(entityDb.id, entity.id);
             equal(entityDb['name'], newName);
@@ -46,7 +46,7 @@ describe('BaseRepository', () => {
             const query = {
                 email: entity['email']
             };
-            const entityDb = await BaseRepository.find(fn, query, { limit: 1 });
+            const entityDb = await BaseRepository.find(collection, query, { limit: 1 });
             ok(entityDb[0]);
             equal(entityDb[0]['email'], entity['email']);
         });
@@ -62,7 +62,7 @@ describe('BaseRepository', () => {
             const query = {
                 testLimit: true
             };
-            const entitiesDb = await BaseRepository.find(fn, query, { limit: 3 });
+            const entitiesDb = await BaseRepository.find(collection, query, { limit: 3 });
             equal(entitiesDb.length, 3);
         });
     });
@@ -77,7 +77,7 @@ describe('BaseRepository', () => {
                 entities.push(entity);
                 await save(entity);
             }
-            const entitiesDb = await BaseRepository.getByIds(fn, [
+            const entitiesDb = await BaseRepository.getByIds(collection, [
                 entities[0].id, entities[1].id, entities[2].id
             ]);
             equal(entitiesDb.length, 3);

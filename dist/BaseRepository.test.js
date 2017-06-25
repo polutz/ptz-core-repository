@@ -14,7 +14,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var MONGO_URL = 'mongodb://localhost:27017/ptz-core-repo';
 var db;
-var fn;
+var collection;
 var save;
 describe('BaseRepository', function () {
     beforeEach(_asyncToGenerator(regeneratorRuntime.mark(function _callee() {
@@ -28,8 +28,8 @@ describe('BaseRepository', function () {
                     case 2:
                         db = _context.sent;
 
-                        fn = BaseRepository.getDbCollection(db, 'testConnection');
-                        save = BaseRepository.save(fn);
+                        collection = BaseRepository.getCollection(db, 'testConnection');
+                        save = BaseRepository.save(collection);
 
                     case 5:
                     case 'end':
@@ -53,7 +53,7 @@ describe('BaseRepository', function () {
 
                         case 3:
                             _context2.next = 5;
-                            return BaseRepository.getById(fn, entity.id);
+                            return BaseRepository.getById(collection, entity.id);
 
                         case 5:
                             entityDb = _context2.sent;
@@ -91,7 +91,7 @@ describe('BaseRepository', function () {
 
                         case 8:
                             _context3.next = 10;
-                            return BaseRepository.getById(fn, entity.id);
+                            return BaseRepository.getById(collection, entity.id);
 
                         case 10:
                             entityDb = _context3.sent;
@@ -128,7 +128,7 @@ describe('BaseRepository', function () {
                                 email: entity['email']
                             };
                             _context4.next = 7;
-                            return BaseRepository.find(fn, query, { limit: 1 });
+                            return BaseRepository.find(collection, query, { limit: 1 });
 
                         case 7:
                             entityDb = _context4.sent;
@@ -176,7 +176,7 @@ describe('BaseRepository', function () {
                                 testLimit: true
                             };
                             _context5.next = 13;
-                            return BaseRepository.find(fn, query, { limit: 3 });
+                            return BaseRepository.find(collection, query, { limit: 3 });
 
                         case 13:
                             entitiesDb = _context5.sent;
@@ -223,7 +223,7 @@ describe('BaseRepository', function () {
 
                         case 11:
                             _context6.next = 13;
-                            return BaseRepository.getByIds(fn, [entities[0].id, entities[1].id, entities[2].id]);
+                            return BaseRepository.getByIds(collection, [entities[0].id, entities[1].id, entities[2].id]);
 
                         case 13:
                             entitiesDb = _context6.sent;
