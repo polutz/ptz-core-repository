@@ -1,6 +1,6 @@
 {
   "name": "ptz-core-repository",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "this is a Polutz module.",
   "main": "dist/index.js",
   "typings": "src/index.ts",
@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "mongodb": "^2.2.29",
-    "ptz-core-domain": "^2.0.0",
+    "ptz-core-domain": "^2.0.1",
     "ptz-log": "^1.0.0"
   }
 }
