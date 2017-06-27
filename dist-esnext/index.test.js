@@ -4,7 +4,8 @@ describe('ptz-core-repository', () => {
     describe('exports', () => {
         it('save', () => ok(index.save));
         it('find', () => ok(index.find));
-        it('getCollection', () => ok(index.getCollection));
+        it('getDb', () => ok(index.getDb));
+        it('getCollection', () => ok(index.getDbCollection));
         it('getById', () => ok(index.getById));
         it('getByIds', () => ok(index.getByIds));
     });

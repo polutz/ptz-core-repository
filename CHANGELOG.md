@@ -1,11 +1,11 @@
 ## master
 
-
 ## 2.0.0 (June 26, 2017)
 
 * Complete rewrite to Functional Programming
     * Add curry to functions
     * Add @types/mongodb to project
+* Add getDb() to BaseRepository
 
 ## 1.0.1 (March 30, 2017)
 

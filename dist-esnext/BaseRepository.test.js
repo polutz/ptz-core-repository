@@ -1,4 +1,3 @@
-import { MongoClient } from 'mongodb';
 import { equal, ok } from 'ptz-assert';
 import * as BaseRepository from './index';
 const MONGO_URL = 'mongodb://localhost:27017/ptz-core-repo';
@@ -7,8 +6,8 @@ var collection;
 var save;
 describe('BaseRepository', () => {
     beforeEach(async () => {
-        db = await MongoClient.connect(MONGO_URL);
-        collection = BaseRepository.getCollection(db, 'testConnection');
+        db = await BaseRepository.getDb(MONGO_URL);
+        collection = BaseRepository.getDbCollection(db, 'test-collection');
         save = BaseRepository.save(collection);
     });
     describe('save', () => {

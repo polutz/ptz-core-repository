@@ -1,7 +1,5 @@
 'use strict';
 
-var _mongodb = require('mongodb');
-
 var _ptzAssert = require('ptz-assert');
 
 var _index = require('./index');
@@ -23,12 +21,12 @@ describe('BaseRepository', function () {
                 switch (_context.prev = _context.next) {
                     case 0:
                         _context.next = 2;
-                        return _mongodb.MongoClient.connect(MONGO_URL);
+                        return BaseRepository.getDb(MONGO_URL);
 
                     case 2:
                         db = _context.sent;
 
-                        collection = BaseRepository.getCollection(db, 'testConnection');
+                        collection = BaseRepository.getDbCollection(db, 'test-collection');
                         save = BaseRepository.save(collection);
 
                     case 5:

@@ -2176,21 +2176,11 @@ ptz-assert@^1.6.3:
   dependencies:
     assert "^1.4.1"
 
-ptz-core-domain@^1.3.3:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/ptz-core-domain/-/ptz-core-domain-1.5.2.tgz#3bd7a4dbefb90cd31e93068c1931dd2dbb729988"
+ptz-core-domain@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ptz-core-domain/-/ptz-core-domain-2.0.1.tgz#d041d5ba1fc5231a27806e1a4d972dbcb3c8798e"
   dependencies:
-    ptz-core-domain "^1.3.3"
-    ptz-log "^1.1.0"
-    ptz-validations "^1.0.0"
-    shortid "^2.2.6"
-
-ptz-core-domain@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ptz-core-domain/-/ptz-core-domain-2.0.0.tgz#4b0b4cb9a9ede97cdbd3936ff9759aba889375a1"
-  dependencies:
-    "@types/ramda" "0.0.10"
-    ptz-core-domain "^1.3.3"
+    "@types/mongodb" "^2.2.6"
     ptz-fp "^1.1.0"
     ptz-log "^1.1.0"
     ptz-validations "^2.0.0"
@@ -2216,12 +2206,6 @@ ptz-log@^1.1.0:
   resolved "https://registry.yarnpkg.com/ptz-log/-/ptz-log-1.1.0.tgz#a5f81680da30e491e49c6a6022ec4972506d473b"
   dependencies:
     moment "^2.18.1"
-
-ptz-validations@^1.0.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/ptz-validations/-/ptz-validations-1.2.1.tgz#30b00823ae1daf03878909134f5db5f41423aa3c"
-  dependencies:
-    ptz-log "^1.0.0"
 
 ptz-validations@^2.0.0:
   version "2.0.3"

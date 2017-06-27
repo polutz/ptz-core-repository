@@ -1,4 +1,4 @@
-import { Collection, Db, MongoClient } from 'mongodb';
+import { Collection, Db } from 'mongodb';
 import { equal, ok } from 'ptz-assert';
 import { IEntityMinBase } from 'ptz-core-domain';
 import * as  BaseRepository from './index';
@@ -10,8 +10,8 @@ var save;
 /* tslint:disable:no-string-literal */
 describe('BaseRepository', () => {
     beforeEach(async () => {
-        db = await MongoClient.connect(MONGO_URL);
-        collection = BaseRepository.getCollection(db, 'testConnection');
+        db = await BaseRepository.getDb(MONGO_URL);
+        collection = BaseRepository.getDbCollection(db, 'test-collection');
         save = BaseRepository.save(collection);
     });
 
