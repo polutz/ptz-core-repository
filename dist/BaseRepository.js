@@ -112,7 +112,7 @@ var getByIds = _ramda2.default.curry(function (collection, ids) {
     return collection.find({ _id: { $in: ids } }).toArray();
 });
 var find = _ramda2.default.curry(function (collection, query, options) {
-    return collection.find(query, {}, options).toArray();
+    return collection.find(query, options).toArray();
 });
 exports.save = save;
 exports.find = find;

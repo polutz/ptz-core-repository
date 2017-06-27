@@ -22,6 +22,6 @@ const save = R.curry(async (collection, entity) => {
 });
 const getById = R.curry((collection, id) => collection.findOne({ _id: id }));
 const getByIds = R.curry((collection, ids) => collection.find({ _id: { $in: ids } }).toArray());
-const find = R.curry((collection, query, options) => collection.find(query, {}, options).toArray());
+const find = R.curry((collection, query, options) => collection.find(query, options).toArray());
 export { save, find, getDb, getDbCollection, getById, getByIds };
 //# sourceMappingURL=BaseRepository.js.map
