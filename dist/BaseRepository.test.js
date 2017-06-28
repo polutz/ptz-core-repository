@@ -97,7 +97,7 @@ describe('BaseRepository', function () {
             }, _callee3, undefined);
         })));
     });
-    describe.only('find', function () {
+    describe('find', function () {
         it('by Email', _asyncToGenerator(regeneratorRuntime.mark(function _callee4() {
             var entity, query, entityDb;
             return regeneratorRuntime.wrap(function _callee4$(_context4) {

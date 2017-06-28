@@ -31,7 +31,7 @@ describe('BaseRepository', () => {
             equal(entityDb['name'], newName);
         });
     });
-    describe.only('find', () => {
+    describe('find', () => {
         it('by Email', async () => {
             const entity = {
                 id: 'testid'
