@@ -1,6 +1,6 @@
 // import { Db } from 'mongodb';
-import { IBaseRepository, IEntityMinBase } from '@alanmarcell/ptz-core-domain';
 import { equal, ok } from 'ptz-assert';
+import { IBaseRepository, IEntityMinBase } from 'ptz-core-domain';
 import { createRepository } from './index';
 
 const MONGO_URL = 'mongodb://localhost:27017/ptz-core-repo';

@@ -1,5 +1,5 @@
-import { IEntityMinBase } from '@alanmarcell/ptz-core-domain';
 import { Collection, Db, MongoClient, UpdateWriteOpResult } from 'mongodb';
+import { IEntityMinBase } from 'ptz-core-domain';
 import R from 'ramda';
 
 const getDb = async (url: string) => await MongoClient.connect(url);
