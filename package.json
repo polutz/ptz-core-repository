@@ -1,6 +1,6 @@
 {
   "name": "@alanmarcell/ptz-core-repository",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "this is a Polutz module.",
   "main": "dist/index.js",
   "typings": "src/index.ts",
