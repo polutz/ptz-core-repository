@@ -42,6 +42,7 @@ var getDb = function () {
 var getDbCollection = _ramda2.default.curry(function (db, collectionName) {
     return db.collection(collectionName);
 });
+// tslint:disable-next-line:max-line-length
 var createRepository = exports.createRepository = _ramda2.default.curry(function () {
     var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(collectionName, url) {
         var db, collection;
@@ -111,6 +112,8 @@ var getById = _ramda2.default.curry(function (collection, id) {
 var getByIds = _ramda2.default.curry(function (collection, ids) {
     return collection.find({ _id: { $in: ids } }).toArray();
 });
+// TODO add FindOptions type to options and remove any when DefinitelyTypes
+// includes find(collection, options:FindOptions)
 var find = _ramda2.default.curry(function (collection, query, options) {
     return collection.find(query, options).toArray();
 });

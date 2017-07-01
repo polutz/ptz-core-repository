@@ -1,5 +1,6 @@
 # ptz-core-repository
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/5f2ff9815dbf40ff82cf49c9bf1a6655)](https://www.codacy.com/app/polutz/ptz-core-repository?utm_source=github.com&utm_medium=referral&utm_content=polutz/ptz-core-repository&utm_campaign=badger)
 [![Build Status](https://travis-ci.org/polutz/ptz-core-repository.svg)](https://travis-ci.org/polutz/ptz-core-repository)
 [![NPM](https://img.shields.io/npm/v/ptz-core-repository.svg)](https://www.npmjs.com/package/ptz-core-repository)
 [![codecov.io](http://codecov.io/github/polutz/ptz-core-repository/coverage.svg)](http://codecov.io/github/polutz/ptz-core-repository)

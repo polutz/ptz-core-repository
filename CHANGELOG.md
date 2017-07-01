@@ -1,5 +1,10 @@
 ## master
 
+## 2.0.1 (June 26, 2017)
+
+* Updated Dependencies
+* Add typedoc
+
 ## 2.0.0 (June 26, 2017)
 
 * Complete rewrite to Functional Programming

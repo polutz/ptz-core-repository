@@ -2,6 +2,7 @@ import { equal, ok } from 'ptz-assert';
 import { createRepository } from './index';
 const MONGO_URL = 'mongodb://localhost:27017/ptz-core-repo';
 var baseRepository;
+/* tslint:disable:no-string-literal */
 describe('BaseRepository', () => {
     beforeEach(async () => {
         baseRepository = await createRepository('test-collection', MONGO_URL);
@@ -79,4 +80,5 @@ describe('BaseRepository', () => {
         });
     });
 });
+/* tslint:enable:no-string-literal */
 //# sourceMappingURL=BaseRepository.test.js.map
