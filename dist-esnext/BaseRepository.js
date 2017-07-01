@@ -2,6 +2,7 @@ import { MongoClient } from 'mongodb';
 import R from 'ramda';
 const getDb = async (url) => await MongoClient.connect(url);
 const getDbCollection = R.curry((db, collectionName) => db.collection(collectionName));
+// tslint:disable-next-line:max-line-length
 export const createRepository = R.curry(async (collectionName, url) => {
     const db = await getDb(url);
     const collection = getDbCollection(db, collectionName);
@@ -22,6 +23,8 @@ const save = R.curry(async (collection, entity) => {
 });
 const getById = R.curry((collection, id) => collection.findOne({ _id: id }));
 const getByIds = R.curry((collection, ids) => collection.find({ _id: { $in: ids } }).toArray());
+// TODO add FindOptions type to options and remove any when DefinitelyTypes
+// includes find(collection, options:FindOptions)
 const find = R.curry((collection, query, options) => collection.find(query, options).toArray());
 export { save, find, getDb, getDbCollection, getById, getByIds };
 //# sourceMappingURL=BaseRepository.js.map

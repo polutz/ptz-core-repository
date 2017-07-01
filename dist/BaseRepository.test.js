@@ -8,6 +8,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var MONGO_URL = 'mongodb://localhost:27017/ptz-core-repo';
 var baseRepository;
+/* tslint:disable:no-string-literal */
 describe('BaseRepository', function () {
     beforeEach(_asyncToGenerator(regeneratorRuntime.mark(function _callee() {
         return regeneratorRuntime.wrap(function _callee$(_context) {
@@ -228,5 +229,6 @@ describe('BaseRepository', function () {
         })));
     });
 });
+/* tslint:enable:no-string-literal */
 //# sourceMappingURL=BaseRepository.test.js.map
 //# sourceMappingURL=BaseRepository.test.js.map

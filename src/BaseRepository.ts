@@ -1,4 +1,4 @@
-import { Collection, Db, MongoClient, UpdateWriteOpResult } from 'mongodb';
+import { Collection, Db, MongoClient } from 'mongodb';
 import { IEntityMinBase } from 'ptz-core-domain';
 import R from 'ramda';
 
@@ -22,8 +22,7 @@ export const createRepository = R.curry(async (collectionName: string, url: stri
 });
 
 const save = R.curry(async (collection: Collection, entity: IEntityMinBase) => {
-    // TODO remove type any when DefinitelyTypes include ops[] to replaceOne return type
-    const result: UpdateWriteOpResult & any = await collection.replaceOne({ _id: entity.id }, entity, { upsert: true });
+    const result = await collection.replaceOne({ _id: entity.id }, entity, { upsert: true });
 
     entity = result.ops[0];
     return entity;

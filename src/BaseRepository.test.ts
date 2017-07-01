@@ -1,4 +1,3 @@
-// import { Db } from 'mongodb';
 import { equal, ok } from 'ptz-assert';
 import { IBaseRepository, IEntityMinBase } from 'ptz-core-domain';
 import { createRepository } from './index';
