@@ -96,7 +96,7 @@
 					<div class="tsd-signature tsd-kind-icon">create<wbr>Repository<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ICreateRepository</span><span class="tsd-signature-symbol"> =&nbsp;R.curry(async &lt;T&gt; (url: string, collectionName: string) &#x3D;&gt; {const db &#x3D; await getDb(url);const collection &#x3D; getDbCollection&lt;T&gt;(db, collectionName);return {db,collectionName,getDbCollection,save: save(collection),getById: getById(collection),getByIds: getByIds(collection),find: find(collection),};})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/edcc4d4/src/BaseRepository.ts#L10">BaseRepository.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/2c8c368/src/BaseRepository.ts#L10">BaseRepository.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -106,7 +106,7 @@
 					<div class="tsd-signature tsd-kind-icon">find<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CurriedFunction3</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;R.curry((collection: Collection | any, query: any, options: { limit: number }) &#x3D;&gt;collection.find(query, options).toArray())</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/edcc4d4/src/BaseRepository.ts#L36">BaseRepository.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/2c8c368/src/BaseRepository.ts#L36">BaseRepository.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -116,7 +116,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>ById<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CurriedFunction2</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Collection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;R.curry((collection: Collection, id: string) &#x3D;&gt; collection.findOne({ _id: id }))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/edcc4d4/src/BaseRepository.ts#L30">BaseRepository.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/2c8c368/src/BaseRepository.ts#L30">BaseRepository.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -126,7 +126,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>ByIds<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CurriedFunction2</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Collection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;R.curry((collection: Collection, ids: string[]) &#x3D;&gt; collection.find({ _id: { $in: ids } }).toArray())</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/edcc4d4/src/BaseRepository.ts#L32">BaseRepository.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/2c8c368/src/BaseRepository.ts#L32">BaseRepository.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -136,7 +136,7 @@
 					<div class="tsd-signature tsd-kind-icon">get<wbr>DbCollection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IGetDbCollection</span><span class="tsd-signature-symbol"> =&nbsp;R.curry((db: Db, collectionName: string) &#x3D;&gt; db.collection&lt;IEntityMinBase&gt;(collectionName))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/edcc4d4/src/BaseRepository.ts#L7">BaseRepository.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/2c8c368/src/BaseRepository.ts#L7">BaseRepository.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -146,7 +146,7 @@
 					<div class="tsd-signature tsd-kind-icon">save<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CurriedFunction2</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Collection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">IEntityMinBase</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;R.curry(async (collection: Collection, entity: IEntityMinBase) &#x3D;&gt; {const result &#x3D; await collection.replaceOne({ _id: entity.id }, entity, { upsert: true });return result.ops[0];})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/edcc4d4/src/BaseRepository.ts#L24">BaseRepository.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/2c8c368/src/BaseRepository.ts#L24">BaseRepository.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -163,7 +163,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/edcc4d4/src/BaseRepository.ts#L5">BaseRepository.ts:5</a></li>
+									<li>Defined in <a href="https://github.com/polutz/ptz-core-repository/blob/2c8c368/src/BaseRepository.ts#L5">BaseRepository.ts:5</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>

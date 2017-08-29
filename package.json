@@ -1,6 +1,6 @@
 {
   "name": "ptz-core-repository",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "this is a Polutz module.",
   "main": "dist/index.js",
   "typings": "src/index.ts",
@@ -21,7 +21,10 @@
     "url": "git+https://github.com/polutz/ptz-core-repository.git"
   },
   "author": "angeloocana.com",
-  "license": "ISC",
+  "contributors": [
+    "Alan Marcell <alanmarcell@live.com> (http://alanmarcell.com.br)"
+  ],
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/polutz/ptz-core-repository/issues"
   },
