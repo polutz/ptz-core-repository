@@ -1,15 +1,15 @@
 import { Collection, Db, MongoClient } from 'mongodb';
-import { IEntityMinBase } from 'ptz-core-domain';
+import { ICreateRepository, IEntityMinBase, IGetDbCollection } from 'ptz-core-domain';
 import R from 'ramda';
 
 const getDb = async (url: string) => await MongoClient.connect(url);
 
-const getDbCollection = R.curry((db: Db, collectionName: string) => db.collection<IEntityMinBase>(collectionName));
+const getDbCollection: IGetDbCollection =
+    R.curry((db: Db, collectionName: string) => db.collection<IEntityMinBase>(collectionName));
 
-// tslint:disable-next-line:max-line-length
-export const createRepository = R.curry(async (collectionName: string, url: string) => {
+export const createRepository: ICreateRepository = R.curry(async <T> (url: string, collectionName: string) => {
     const db = await getDb(url);
-    const collection = getDbCollection(db, collectionName);
+    const collection = getDbCollection<T>(db, collectionName);
     return {
         db,
         collectionName,
@@ -24,8 +24,7 @@ export const createRepository = R.curry(async (collectionName: string, url: stri
 const save = R.curry(async (collection: Collection, entity: IEntityMinBase) => {
     const result = await collection.replaceOne({ _id: entity.id }, entity, { upsert: true });
 
-    entity = result.ops[0];
-    return entity;
+    return result.ops[0];
 });
 
 const getById = R.curry((collection: Collection, id: string) => collection.findOne({ _id: id }));

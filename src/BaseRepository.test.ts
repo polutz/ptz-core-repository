@@ -1,19 +1,24 @@
 import { equal, ok } from 'ptz-assert';
-import { IBaseRepository, IEntityMinBase } from 'ptz-core-domain';
+import { IBaseRepository } from 'ptz-core-domain';
 import { createRepository } from './index';
 
 const MONGO_URL = 'mongodb://localhost:27017/ptz-core-repo';
-var baseRepository: IBaseRepository<IEntityMinBase>;
+interface IUser {
+    id?: string;
+    name: string;
+}
+var baseRepository: IBaseRepository<IUser>;
 /* tslint:disable:no-string-literal */
 describe('BaseRepository', () => {
     beforeEach(async () => {
-        baseRepository = await createRepository('test-collection', MONGO_URL);
+        baseRepository = await createRepository<IUser>(MONGO_URL, 'test-collection');
     });
 
     describe('save', () => {
         it('insert', async () => {
-            const entity: IEntityMinBase = {
-                id: 'testid'
+            const entity: IUser = {
+                id: 'testid',
+                name: 'testName'
             };
 
             await baseRepository.save(entity);
@@ -24,8 +29,9 @@ describe('BaseRepository', () => {
         });
 
         it('update', async () => {
-            const entity: IEntityMinBase = {
-                id: 'testid'
+            const entity: IUser = {
+                id: 'testid',
+                name: 'testName'
             };
 
             entity['name'] = 'teste';
@@ -47,8 +53,9 @@ describe('BaseRepository', () => {
 
     describe('find', () => {
         it('by Email', async () => {
-            const entity: IEntityMinBase = {
-                id: 'testid'
+            const entity: IUser = {
+                id: 'testid',
+                name: 'testName'
             };
 
             entity['email'] = 'angeloocana@gmail.com';
@@ -67,7 +74,8 @@ describe('BaseRepository', () => {
 
         it('limit by 3', async () => {
             for (let i = 0; i <= 6; i++) {
-                const entity: IEntityMinBase = {
+                const entity: IUser = {
+                    name: 'testName',
                     id: 'test' + i
                 };
 
@@ -87,10 +95,11 @@ describe('BaseRepository', () => {
 
     describe('getByIds', () => {
         it('get 3 entities by ids', async () => {
-            const entities: IEntityMinBase[] = [];
+            const entities: IUser[] = [];
 
             for (let i = 0; i <= 6; i++) {
-                const entity: IEntityMinBase = {
+                const entity: IUser = {
+                    name: 'testName',
                     id: 'test' + i
                 };
 

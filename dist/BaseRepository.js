@@ -15,8 +15,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 const getDb = async url => await _mongodb.MongoClient.connect(url);
 const getDbCollection = _ramda2.default.curry((db, collectionName) => db.collection(collectionName));
-// tslint:disable-next-line:max-line-length
-const createRepository = exports.createRepository = _ramda2.default.curry(async (collectionName, url) => {
+const createRepository = exports.createRepository = _ramda2.default.curry(async (url, collectionName) => {
     const db = await getDb(url);
     const collection = getDbCollection(db, collectionName);
     return {
@@ -31,8 +30,7 @@ const createRepository = exports.createRepository = _ramda2.default.curry(async 
 });
 const save = _ramda2.default.curry(async (collection, entity) => {
     const result = await collection.replaceOne({ _id: entity.id }, entity, { upsert: true });
-    entity = result.ops[0];
-    return entity;
+    return result.ops[0];
 });
 const getById = _ramda2.default.curry((collection, id) => collection.findOne({ _id: id }));
 const getByIds = _ramda2.default.curry((collection, ids) => collection.find({ _id: { $in: ids } }).toArray());

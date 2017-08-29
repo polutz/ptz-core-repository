@@ -9,12 +9,13 @@ var baseRepository;
 /* tslint:disable:no-string-literal */
 describe('BaseRepository', () => {
     beforeEach(async () => {
-        baseRepository = await (0, _index.createRepository)('test-collection', MONGO_URL);
+        baseRepository = await (0, _index.createRepository)(MONGO_URL, 'test-collection');
     });
     describe('save', () => {
         it('insert', async () => {
             const entity = {
-                id: 'testid'
+                id: 'testid',
+                name: 'testName'
             };
             await baseRepository.save(entity);
             const entityDb = await baseRepository.getById(entity.id);
@@ -23,7 +24,8 @@ describe('BaseRepository', () => {
         });
         it('update', async () => {
             const entity = {
-                id: 'testid'
+                id: 'testid',
+                name: 'testName'
             };
             entity['name'] = 'teste';
             await baseRepository.save(entity);
@@ -39,7 +41,8 @@ describe('BaseRepository', () => {
     describe('find', () => {
         it('by Email', async () => {
             const entity = {
-                id: 'testid'
+                id: 'testid',
+                name: 'testName'
             };
             entity['email'] = 'angeloocana@gmail.com';
             await baseRepository.save(entity);
@@ -53,6 +56,7 @@ describe('BaseRepository', () => {
         it('limit by 3', async () => {
             for (let i = 0; i <= 6; i++) {
                 const entity = {
+                    name: 'testName',
                     id: 'test' + i
                 };
                 entity['testLimit'] = true;
@@ -71,6 +75,7 @@ describe('BaseRepository', () => {
             const entities = [];
             for (let i = 0; i <= 6; i++) {
                 const entity = {
+                    name: 'testName',
                     id: 'test' + i
                 };
                 entity['i'] = i;

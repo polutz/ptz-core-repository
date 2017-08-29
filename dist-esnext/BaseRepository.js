@@ -2,8 +2,7 @@ import { MongoClient } from 'mongodb';
 import R from 'ramda';
 const getDb = async (url) => await MongoClient.connect(url);
 const getDbCollection = R.curry((db, collectionName) => db.collection(collectionName));
-// tslint:disable-next-line:max-line-length
-export const createRepository = R.curry(async (collectionName, url) => {
+export const createRepository = R.curry(async (url, collectionName) => {
     const db = await getDb(url);
     const collection = getDbCollection(db, collectionName);
     return {
@@ -18,8 +17,7 @@ export const createRepository = R.curry(async (collectionName, url) => {
 });
 const save = R.curry(async (collection, entity) => {
     const result = await collection.replaceOne({ _id: entity.id }, entity, { upsert: true });
-    entity = result.ops[0];
-    return entity;
+    return result.ops[0];
 });
 const getById = R.curry((collection, id) => collection.findOne({ _id: id }));
 const getByIds = R.curry((collection, ids) => collection.find({ _id: { $in: ids } }).toArray());
